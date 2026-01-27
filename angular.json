@@ -30,7 +30,7 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "styles/main.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

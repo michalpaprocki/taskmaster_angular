@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+@use 'variables';
+@use 'fonts';
+
+
+
+* {
+    font-family: fonts.$font-primary;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 0rem 10rem;
+    margin: 0 auto;
+    min-height: calc(100dvh - calc(variables.$footer-h + variables.$header-h));
+}
+li {
+    list-style-type: none;
+}
+a {
+    cursor: pointer;
+    color: var(--primary-color);
+    border-radius: 10px;
+    padding: 1rem 1rem;
+    font-family: fonts.$font-secondary;
+    text-decoration: none;
+}
+a:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transition: 150ms;
+}
+h1, h2, h3, h4 {
+    margin:1rem 0rem;
+    padding: 1rem;
+}
+p {
+    padding: 1rem;
+}
+    h1.form-heading {
+    text-align: center;
+    padding: 4rem;
+    font-size: 2rem;
+    margin: 0;
+}
+@media (max-width: 800px) {
+    form > div {
+        display: flex;
+        flex-direction: column;
+    }
+    div.redirect {
+    flex-direction: column;
+    align-items: center;
+    }
+    main {
+        padding: 0rem 1rem;
+    }
+
+}
+form {
+
+    margin: 2rem 0rem;
+    display: flex;
+    padding: 3rem 2rem;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    & button {
+        margin-top: 2rem;
+        width: fit-content;
+        padding: 0.5rem;
+        min-width: 15ch;
+        text-transform: uppercase;
+    }
+
+    & div {
+        display: flex;
+        gap:1rem;
+        justify-content: start;
+        align-items: center;
+        
+        & label, input {
+            width: 20ch;
+            font-size: 1.2rem;
+        }
+    }
+
+
+}
+div.redirect {
+    padding: 2rem;
+    display: flex;
+    gap:2rem;
+    justify-content: space-between;
+    & p , a{
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+}
+
+button.btn-primary {
+  background-color: var(--primary-color);
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--bg-color);
+  border-radius: 15px;
+  border: 0.1px solid transparent;
+  transition: 150ms;
+}
+button.btn-primary:hover {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border: 0.1px solid var(--primary-color);
+
+}
+
