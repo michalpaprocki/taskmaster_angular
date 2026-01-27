@@ -1,0 +1,64 @@
+@use '../../../../styles/variables';
+@use "sass:color";
+section.hero {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  & h1 {
+    font-size: 2rem;
+  }
+
+}
+
+div.hero-actions {
+  display: flex;
+  gap: 1rem;
+
+}
+a.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-radius: 15px;
+  border: 0.1px solid transparent;
+  transition: 150ms;
+}
+a.btn-primary:hover {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border: 0.1px solid var(--primary-color);
+
+}
+a.btn-secondary {
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+  border-radius: 15px;
+  border: 0.1px solid var(--primary-color);
+  transition: 150ms;
+}
+a.btn-secondary:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border: 0.1px solid var(--primary-color);
+
+}
+section.features {
+  padding: 2rem;
+  background: variables.$bg-grad;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0rem;
+  
+}
+@media (max-width: 1200px) {
+  section.features {
+      grid-template-columns: 1fr;
+  }
+}
+div.feature {
+  padding: 5rem 1rem;
+  background-color: variables.$bg-color;
+  & h3 {
+    font-size: 1.5rem;
+  }
+}

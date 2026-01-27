@@ -1,0 +1,26 @@
+<section class="hero">
+  <h1>Organize your tasks with TaskMaster</h1>
+  <p>Manage groups, track tasks, and stay productive!</p>
+  <div *ngIf="!auth.user() as user" class="hero-actions">
+    <a routerLink="/auth/register" class="btn-primary">Get Started</a>
+    <a routerLink="/auth/login" class="btn-secondary">Login</a>
+  </div>
+  <div *ngIf="auth.user() as user;">
+    <h2>Welcome, {{ user.name }}</h2>
+
+  </div>
+</section>
+<section class="features">
+  <div class="feature">
+    <h3>Groups</h3>
+    <p>Create and manage your groups efficiently.</p>
+  </div>
+  <div class="feature">
+    <h3>Tasks</h3>
+    <p>Track todos and stay on top of your workflow.</p>
+  </div>
+  <div class="feature">
+    <h3>Analytics</h3>
+    <p>See your productivity trends over time.</p>
+  </div>
+</section>
