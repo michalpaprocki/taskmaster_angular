@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
 import { MainLayout } from './layouts/main-layout/main-layout';
-import { App } from './app';
-import { AuthLayout } from './layouts/auth-layout/auth-layout';
 import { Register } from './features/auth/register/register';
 import { Login } from './features/auth/login/login';
 import { HomePage } from './features/home/home-page';
