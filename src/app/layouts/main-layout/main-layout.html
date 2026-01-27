@@ -1,0 +1,27 @@
+<header class="header">
+    <div class="drop-down-container">
+
+        <button (click)="toggleMenu()" class="logo btn-primary">TaskMaster</button>
+        <div #menu class="drop-down" [style.height]="height() === null ? 'auto' : height() + 'px'">
+            <nav class="drop-down-nav" [attr.aria-hidden]="!isOpen()">
+                <a class="menu-link" routerLink="/tasks">tasks</a>
+                <a class="menu-link" routerLink="/users">users</a>
+                <a class="menu-link" routerLink="/organizations">organizations</a>
+                <a *ngIf="auth.isAuthenticated()" class="menu-link" routerLink="/profile">profile</a>
+                <button *ngIf="auth.isAuthenticated()" (click)="auth.logout()" class="menu-link">logout</button>
+            </nav>
+
+        </div>
+    </div>
+
+    <nav>
+        <a routerLink="/">Home</a>
+        <a routerLink="/auth/login">login</a>
+        <a routerLink="/auth/register">register</a>
+        <button class="theme-toggle">theme</button>
+    </nav>
+</header>
+<main>
+    <router-outlet/>
+</main>
+<footer-component />
