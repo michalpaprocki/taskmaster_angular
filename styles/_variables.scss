@@ -1,0 +1,27 @@
+// Define CSS variables for dark/light mode
+$header-h: 6rem;
+$footer-h: 10rem;
+$primary-color: #4f46e5;
+$bg-color: #ffffff;
+
+$bg-grad:  linear-gradient(
+  135deg,
+  #6d66f2 0%,
+  #4f46e5 40%,
+  #4338ca 70%,
+  #312e81 100%
+);
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --text-focus-color: #ffffff;
+  --primary-color: #4f46e5;
+  --secondary-color: #f0f0f0;
+
+  &.dark {
+    --bg-color: #111111;
+    --text-color: #f0f0f0;
+    --primary-color: #8b5cf6;
+    --secondary-color: #1e1e1e;
+  }
+}
