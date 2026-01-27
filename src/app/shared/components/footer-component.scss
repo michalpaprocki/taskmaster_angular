@@ -1,0 +1,10 @@
+@use '../../../../styles/variables';
+
+footer.footer {
+    height: variables.$footer-h;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: variables.$bg-grad;
+    color: var(--bg-color);
+}
