@@ -1,0 +1,44 @@
+<h1 class="form-heading">Register an account</h1>
+<form class="auth" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name: </label>
+        <input id="name" type="name" name="name" formControlName="name" />
+    </div>
+    @if (registerForm.controls.name.touched && registerForm.controls.name.invalid) {
+        <small>
+            Please enter a valid name
+        </small>
+    }
+    <div>
+        <label for="email">Email: </label>
+        <input id="email" type="email" name="email" formControlName="email" />
+    </div>
+    @if (registerForm.controls.email.touched && registerForm.controls.email.invalid) {
+        <small>
+            Please enter a valid email
+        </small>
+    }
+    <div>
+
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" formControlName="password" />
+    </div>
+    @if (registerForm.controls.password.touched && registerForm.controls.password.invalid) {
+        <small>
+            Please enter a valid password
+        </small>
+    }
+    <!-- 
+    replace with @if when it's
+    @if (errMessage) {
+        <small>
+            {{errMessage}} 
+        </small>
+    } --> 
+        <small *ngIf="errMessage()">{{ errMessage() }}</small>
+    <button type="submit" [disabled]="!registerForm.valid">submit</button>
+</form>
+<div class="redirect">
+    <p>Already have an account?</p>
+    <a routerLink="/auth/login">Login</a>
+</div>

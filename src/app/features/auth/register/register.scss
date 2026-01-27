@@ -1,0 +1,44 @@
+form.auth{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: violet;
+
+    & small {
+        animation: fadeIn 0.5s forwards ease-in;
+        width: 100%;
+        text-align: center;
+    }
+    & div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 20rem;
+        padding: 1rem;
+        
+        & label {
+            font-size: larger;
+        }
+
+        & input {
+            padding: 0.5rem;
+        }
+    }   
+    & button[type="submit"] {
+        margin-top: 2rem;
+        padding: 1rem 0.5rem;
+        width: 20ch;
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,28 @@
+<h1 class="form-heading">Log In</h1>
+<form class="auth" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="email">Email: </label>
+        <input id="email" type="email" name="email" formControlName="email" />
+    </div>
+    @if (loginForm.controls.email.touched && loginForm.controls.email.invalid) {
+        <small>
+            Please enter a valid email
+        </small>
+    }
+    <div>
+
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" formControlName="password" />
+    </div>
+    @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+        <small>
+            Please enter a valid password
+        </small>
+    }
+        <small *ngIf="errMessage()">{{ errMessage() }}</small>
+    <button type="submit" [disabled]="!loginForm.valid">submit</button>
+</form>
+<div class="redirect">
+    <p>Don't have an account?</p>
+    <a routerLink="/auth/register">Register</a>
+</div>
