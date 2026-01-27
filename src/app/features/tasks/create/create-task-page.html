@@ -1,0 +1,46 @@
+<section>
+    <div>
+        <h2>Create a task</h2>
+        <form [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="title">Title: </label>
+                <input id="title" type="text" name="title" formControlName="title" />
+            </div>
+                @if (createTaskForm.controls.title.touched && createTaskForm.controls.title.invalid) {
+                    <small>
+                        Please enter a valid title
+                    </small>
+                }
+            <div>
+                <label for="description">Description: </label>
+                <input id="description" type="text" name="description" formControlName="description" />
+            </div>
+                @if (createTaskForm.controls.description.touched && createTaskForm.controls.description.invalid) {
+                    <small>
+                        Please enter a valid description
+                    </small>
+                }
+            <div>
+                <label for="deadline">Deadline: </label>
+                <input id="deadline" type="date" name="deadline" [min]="this.defaultDeadline" formControlName="deadline" />
+            </div>
+                @if (createTaskForm.controls.deadline.touched && createTaskForm.controls.deadline.invalid) {
+                    <small>
+                        Please enter a valid dadline
+                    </small>
+                }
+            <div>
+                <label for="deadline">Deadline: </label>
+                <input id="deadline" type="date" name="deadline" [min]="this.defaultDeadline" formControlName="deadline" />
+            </div>
+                @if (createTaskForm.controls.deadline.touched && createTaskForm.controls.deadline.invalid) {
+                    <small>
+                        Please enter a valid dadline
+                    </small>
+                }
+
+            <small *ngIf="errMessage()">{{ errMessage() }}</small>
+            <button type="submit" [disabled]="!createTaskForm.valid">add</button>
+        </form>
+    </div>
+</section>
