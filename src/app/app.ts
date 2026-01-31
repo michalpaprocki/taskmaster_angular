@@ -1,5 +1,5 @@
-import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { AuthService } from './core/services/auth.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -9,14 +9,13 @@ import { isPlatformBrowser } from '@angular/common';
   imports: [RouterOutlet],
   template: `<router-outlet/>`
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('taskmaster_fe');
- private auth = inject(AuthService);
+  private auth = inject(AuthService);
   private platformId = inject(PLATFORM_ID);
+  private route = inject(ActivatedRoute)
 
-  constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.auth.loadUser().subscribe()
-    }
+  ngOnInit(): void {
+    this.route.data.subscribe()
   }
 }
