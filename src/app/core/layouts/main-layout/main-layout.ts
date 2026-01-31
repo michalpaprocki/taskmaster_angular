@@ -1,15 +1,17 @@
 import { Component, ElementRef, signal, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
-import { FooterComponent } from "../../shared/components/footer-component";
-import { AuthService } from '../../core/services/auth.service';
-import { NgIf } from '@angular/common';
+
+
+
+import { AuthService } from '../../services/auth.service';
+import { FooterComponent } from '../footer/footer-component';
 
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, RouterLinkWithHref, FooterComponent, NgIf],
-  templateUrl: './main-layout.html',
-  styleUrl: './main-layout.scss',
+  imports: [RouterOutlet, RouterLinkWithHref, FooterComponent],
+  templateUrl: 'main-layout.html',
+  styleUrl: 'main-layout.scss',
 })
 export class MainLayout {
 
