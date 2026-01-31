@@ -1,0 +1,41 @@
+.click-list-wrapper {
+    display: flex;
+    flex-direction: column;
+    
+}
+.click-list-container {
+    min-height: 10rem;
+    padding: 1rem;
+    display: flex;
+    align-items:start ;
+    & span {
+        font-weight: bold;
+    }
+} 
+.click-list {
+    min-width: 30ch;
+
+    > li button.list-button {
+        margin: 0rem;
+        text-transform: none;
+        padding: 0.25rem;
+        min-width: 0;
+        border: none;
+        width: 100%;
+        text-align: start;
+        text-overflow: ellipsis;
+        background-color: var(--primary-color);
+        color: var(--bg-color);
+        font-size: 1rem;
+    }
+    > li button.list-button:hover, li button.list-button:focus {
+        border: none;
+
+        
+        background-color: var(--bg-color);
+        color: var(---primary-color);
+    }
+    > li button.list-button:active {
+        
+    }
+}

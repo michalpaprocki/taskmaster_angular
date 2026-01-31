@@ -1,0 +1,63 @@
+<section>
+    <h1>Create an Organization</h1>
+    <form [formGroup]="createOrgForm" (ngSubmit)="onSubmit()">
+        <div class="">
+            <label for="name" >Name: </label>
+            <input id="name" name="name" title="name" type="text" formControlName="name"/>
+        </div>
+        @if (createOrgForm.controls.name.touched && createOrgForm.controls.name.invalid) {
+                <small>
+                    Please enter a valid name
+                </small>
+            }
+        <div class="">
+            <label for="description" >Description: </label>
+            <input id="description" name="description" title="description" type="text" formControlName="description"/>
+        </div>
+        @if (createOrgForm.controls.description.touched && createOrgForm.controls.description.invalid) {
+                <small>
+                    Please enter a valid description
+                </small>
+            }
+        <div class="click-list-wrapper">
+            <button class="btn-primary" (click)="showUsers()" type="button">add users</button>
+            @if (isOpen) {
+
+                <div class="click-list-container">
+                    <div class="flex-col">
+                        <span>Available users:</span>
+
+                        <ul class="click-list">
+                            @for(user of users(); track $index){
+                                <li><button class="list-button" (click)="addMember(user)" type="button">{{user.name}}</button></li>
+                                
+                            }
+                        </ul>
+                        
+                    </div>
+                    <div class="flex-col">
+
+                        <span>Selected users:</span>
+                        <ul class="click-list">
+
+                        @for(member of getFormMembers; track $index){
+                            <li><button class="list-button" (click)="removeMember(member)" type="button">{{member.name}}</button></li>
+
+                        }
+                        </ul>
+
+                    </div>
+                </div>
+}
+
+            </div>
+            @if(errMessage()){
+                <small>{{ errMessage() }}</small>
+            }
+            @if(successMessage()){
+                <small>{{ successMessage() }}</small>
+            }
+             
+            <button type="submit" class="btn-primary" [disabled]="!createOrgForm.valid">Create</button>
+    </form>
+</section>
