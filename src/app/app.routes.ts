@@ -22,16 +22,19 @@ import { EditTaskPage } from './features/tasks/edit/edit-task-page';
 import { MainLayout } from './core/layouts/main-layout/main-layout';
 import { noAuthGuard } from './core/guards/noAuth.guard';
 import { orgGuard } from './core/guards/orgGuard';
+import { UsersPage } from './features/users/users-page.';
+import { ProfilePage } from './features/profile/profile-page';
+import { AuthResolver } from './core/resolvers/auth-resolver';
 
 export const routes: Routes = [
-    {path: "", component: MainLayout, children: [
+    {path: "", component: MainLayout,resolve: {auth: AuthResolver} , children: [
         {path: "", component: HomePage}
     ]},
-    {path: "auth", component: MainLayout, children: [
+    {path: "auth", component: MainLayout,resolve: {auth: AuthResolver} , children: [
         {path: "register", component: Register, canMatch: [noAuthGuard]},
         {path: "login", component: Login, canMatch: [noAuthGuard]}
     ]},
-    {path: "tasks", component: MainLayout, children: [
+    {path: "tasks", component: MainLayout,resolve: {auth: AuthResolver} , children: [
         {path: "", component: TasksPage, children: []},
         {path: "create", component: CreateTaskPage, children: []},
         {path: "all", component: AllTasksPage, children: []},
@@ -39,13 +42,19 @@ export const routes: Routes = [
         {path: "edit/:slug", component: EditTaskPage, children: []},
         {path: ":slug", component: SlugTaskPage, children: []}
     ]},
-    {path:"organizations", component: MainLayout, children: [
+    {path:"organizations", component: MainLayout,resolve: {auth: AuthResolver} , children: [
         {path: "", component: OrganizationsPage, children: []},
         {path: "create", component: CreateOrganizationPage, children: []},
         {path: "all", component: AllOrganizationsPage, children: []},
         {path: "my", component: MyOrganizationsPage, children: []},
         {path: "edit/:slug", component: EditOrganizationPage, children: [], canMatch: [orgGuard], resolve: { org: OrganizationResolver}},
         {path: ":slug", component: SlugOrganizationPage, children: []},
+    ]},
+    {path: "profile", component: MainLayout,resolve: {auth: AuthResolver} , children: [
+        {path: "", component: ProfilePage, children: []}
+    ]},
+    {path: "users", component: MainLayout,resolve: {auth: AuthResolver} , children: [
+        {path: "", component: UsersPage, children: []}
     ]},
     {path: "**", component: NotFoundComponent}
 ];
