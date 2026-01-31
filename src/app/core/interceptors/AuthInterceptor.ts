@@ -1,10 +1,11 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { BehaviorSubject, catchError, filter, Observable, switchMap, take, throwError } from "rxjs";
-import { AuthService } from "../core/services/auth.service";
+import { BehaviorSubject, catchError, filter, Observable, ReplaySubject, switchMap, take, throwError } from "rxjs";
+import { AuthService } from "../services/auth.service";
+
 
 let isRefreshing = false
-const refreshSubject = new BehaviorSubject<boolean>(false)
+const refreshSubject = new ReplaySubject<boolean>(1)
 // similar to express middlewares or elixir plugs
 export const AuthInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, next:HttpHandlerFn): Observable<HttpEvent<unknown>>  => {
     
@@ -16,19 +17,20 @@ export const AuthInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, nex
 
     return next(request).pipe(
         catchError(err => {
-            if(err.status == 400 && req.url.includes("/auth/register") || req.url.includes("/auth/login")){
-                // do nothing and allow to continue, component handles validation errors
-                return next(request)
+
+            if(err.status == 400){
+                // do nothing and allow to continue, components handle validation errors
+                return throwError(() => err)
             }
             // ignore 401 from session and refresh endpoints
-            if(err.status == 401 && !req.url.includes("/auth/refresh") || !req.url.includes("/auth/session")) {
+            if(err.status == 401 && !req.url.includes("/auth/refresh") && !req.url.includes("/auth/session")) {
                 return handle401(request, next, authService)
             }
             // clear user on 401 from session and refresh endpoints
             if(err.status === 401 && req.url.includes("/auth/refresh") || req.url.includes("/auth/session")) {
                 authService.clearUser();
             }
-            return throwError(() => err) as Observable<HttpEvent<unknown>>;
+            return throwError(() => err);
         })
     )
 
