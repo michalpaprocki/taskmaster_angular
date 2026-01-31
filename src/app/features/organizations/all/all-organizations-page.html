@@ -1,0 +1,34 @@
+<section class="">
+  <h1>
+      Organizations
+  </h1>
+
+    @if(errMessage()){
+        <small>{{ errMessage() }}</small>
+    }
+    <div class="org-grid">
+    @for(org of organizations(); track $index){
+        <a [routerLink]="['/organizations', org.id]" class="grid-item">
+                    <span class="org-name">{{org.name}}</span>
+                    <div class="org-personel">
+                        @for(member of org.memberships; track $index) {
+                            @if (member.role == "OWNER" ) {
+                                <span>Owner: {{member.name}}</span>
+                            }
+                            
+                        }
+                        <span>Members: {{org.memberships.length}}</span>
+                    </div>
+                    @if(org.description?.length == 0) {
+                        <span>Description: N/A</span>
+                    } @else {
+                    <span>Description: {{org.description}}</span>
+                }
+    
+                
+            </a>
+    } @empty {
+            <span>No organizations yet</span>
+    }
+     </div>
+</section>
