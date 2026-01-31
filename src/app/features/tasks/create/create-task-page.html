@@ -22,24 +22,50 @@
                 }
             <div>
                 <label for="deadline">Deadline: </label>
-                <input id="deadline" type="date" name="deadline" [min]="this.defaultDeadline" formControlName="deadline" />
+                <input id="deadline" type="date" name="deadline" [min]="defaultDeadline" formControlName="deadline" />
             </div>
                 @if (createTaskForm.controls.deadline.touched && createTaskForm.controls.deadline.invalid) {
                     <small>
                         Please enter a valid dadline
                     </small>
                 }
-            <div>
-                <label for="deadline">Deadline: </label>
-                <input id="deadline" type="date" name="deadline" [min]="this.defaultDeadline" formControlName="deadline" />
-            </div>
-                @if (createTaskForm.controls.deadline.touched && createTaskForm.controls.deadline.invalid) {
-                    <small>
-                        Please enter a valid dadline
-                    </small>
+                <div class="click-list-wrapper">
+                <button class="btn-primary" (click)="showOrgs()" type="button">assign task</button>
+                @if (isOpen()) {
+
+                    <div class="click-list-container">
+                        <div class="flex-col">
+                            <span>Available orgs:</span>
+
+                            <ul class="click-list">
+                                @for(org of organizations(); track $index){
+                                    <li><button class="list-button" (click)="addOrg(org)" type="button">{{org.name}}</button></li>
+                                    
+                                }
+                            </ul>
+                            
+                        </div>
+                        <div class="flex-col">
+
+                            <span>Selected users:</span>
+                            <ul class="click-list">
+
+                            @for(org of getFormOrgs; track $index){
+                                <li><button class="list-button" (click)="removeOrg(org)" type="button">{{org.name}}</button></li>
+
+                            }
+                            </ul>
+
+                        </div>
+                    </div>
                 }
 
-            <small *ngIf="errMessage()">{{ errMessage() }}</small>
+                </div>
+
+            
+                @if(errMessage()) {
+                    <small>{{ errMessage() }}</small>
+                }
             <button type="submit" [disabled]="!createTaskForm.valid">add</button>
         </form>
     </div>
