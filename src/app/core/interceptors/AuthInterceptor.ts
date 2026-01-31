@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from "@angular/common/http";
 import { inject } from "@angular/core";
-import { BehaviorSubject, catchError, filter, Observable, ReplaySubject, switchMap, take, throwError } from "rxjs";
+import { BehaviorSubject, catchError, filter, Observable, ReplaySubject, switchMap, take, throwError, EMPTY } from "rxjs";
 import { AuthService } from "../services/auth.service";
 
 
@@ -23,13 +23,15 @@ export const AuthInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, nex
                 return throwError(() => err)
             }
             // ignore 401 from session and refresh endpoints
-            if(err.status == 401 && !req.url.includes("/auth/refresh") && !req.url.includes("/auth/session")) {
+            if(err.status == 401 && !req.url.includes("/auth/refresh") && !req.url.includes("/auth/session") && !req.url.includes("/users/me/password")) {
                 return handle401(request, next, authService)
             }
             // clear user on 401 from session and refresh endpoints
-            if(err.status === 401 && req.url.includes("/auth/refresh") || req.url.includes("/auth/session")) {
+            if(err.status === 401 && req.url.includes("/auth/refresh") || err.status === 401 && req.url.includes("/auth/session")) {
                 authService.clearUser();
+                return EMPTY;
             }
+            
             return throwError(() => err);
         })
     )
@@ -50,7 +52,7 @@ export const AuthInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, nex
                         isRefreshing = false;
                         refreshSubject.next(false);
                         authService.clearUser(); // no valid refresh, log out
-                        return throwError(() => err);
+                        return EMPTY;
                 })
             )
         }
@@ -60,7 +62,10 @@ export const AuthInterceptor: HttpInterceptorFn = (req:HttpRequest<unknown>, nex
         take(1),
         switchMap(v => {
             if (v) return next(request); // refresh succeeded
-            else return throwError(() => new Error("Refresh failed"));
+            else{
+                authService.clearUser(); 
+                return EMPTY;
+            } 
             })
         );
     }
