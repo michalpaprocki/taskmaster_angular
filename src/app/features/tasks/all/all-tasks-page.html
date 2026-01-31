@@ -1,3 +1,22 @@
-<section>
-    all tasks
+<section class="">
+  <h1>
+      Tasks
+  </h1>
+
+    @if(errMessage()){
+        <small>{{ errMessage() }}</small>
+    }
+    <div class="org-grid">
+    @for(task of taskService.tasks(); track $index){
+        <a [routerLink]="['/tasks', task.id]" class="grid-item">
+                    <span class="org-name">{{task.title}}</span>
+                    <div class="org-personel">
+                    </div>
+     
+                
+        </a>
+    } @empty {
+            <span>No tasks yet</span>
+    }
+     </div>
 </section>
