@@ -18,7 +18,6 @@ export const orgGuard: CanMatchFn = (route, segments) => {
     const org = orgService.findOrganization(orgId)
     const user = auth.user()
     const isAuthorized = org?.memberships.some(m => m.role === "OWNER" && m.name === user?.name) ?? false
-        console.log(orgId)
     if (!orgId) {
         return false
     }
