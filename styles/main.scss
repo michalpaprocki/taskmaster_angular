@@ -10,7 +10,11 @@
     margin: 0;
     box-sizing: border-box;
 }
-@media (max-width: 800px) {
+body {
+    min-width: 800px;
+}
+@media (max-width: 1000px) {
+
     form > div {
         display: flex;
         flex-direction: column;
@@ -19,22 +23,19 @@
     flex-direction: column;
     align-items: center;
     }
-    main {
-        padding: 0rem 1rem;
-    }
+  
     .orgs-container {
-    flex-direction: column;
+        flex-direction: column;
 
     }
-
+    h1, h2, h3, h4 {
+    margin:0.1rem 0rem;
+    padding: 0.5rem;
+    text-transform: capitalize;
+}
 
 }
 
-main {
-    padding: 0rem 10rem;
-    margin: 0 auto;
-    min-height: calc(100dvh - calc(variables.$footer-h + variables.$header-h));
-}
 section {
     padding: 5rem 0rem;
 }
@@ -59,6 +60,7 @@ a:hover {
     transition: 150ms;
     border: 0.1px solid var(--primary-color);
 }
+
 h1, h2, h3, h4 {
     margin:1rem 0rem;
     padding: 1rem;
@@ -161,6 +163,13 @@ button.btn-secondary:hover {
     background-color: var(--bg-color);
     color: var(--primary-color);
     border: 0.1px solid var(--primary-color);
+}
+button.btn-secondary[disabled] {
+    background-color: var(--disabled-color);
+}
+button.btn-secondary[disabled]:hover {
+    color: var(--bg-color);
+    cursor: default;
 }
 button.warn {
     background-color: var(--warn-color);

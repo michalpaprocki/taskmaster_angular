@@ -35,7 +35,7 @@
     @if(successMessage()) {
         <small>{{ successMessage() }}</small>
     }
-    <button type="submit" [disabled]="!registerForm.valid">submit</button>
+    <button class="btn-secondary" type="submit" [disabled]="!registerForm.valid">submit</button>
 </form>
 <div class="redirect">
     <p>Already have an account?</p>
