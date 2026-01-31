@@ -1,0 +1,72 @@
+<section class="">
+    <h1>My Organizations</h1>
+
+        @if(errMessage()){
+        <small>{{ errMessage() }}</small>
+    }
+    <div class="orgs-container">
+        <div class="org-card">
+
+        
+            <h2>Organizations you belong to</h2>
+            <div class="org-grid">
+                
+                @for(org of userOrganizations(); track $index){
+                    <a [routerLink]="['/organizations', org.id]" class="grid-item">
+                        <span class="org-name">{{org.name}}</span>
+                        <div class="org-personel">
+                            @for(member of org.memberships; track $index) {
+                                @if (member.role == "OWNER" ) {
+                                    <span>Owner: {{member.name}}</span>
+                                }
+                                
+                            }
+                            <span>Members: {{org.memberships.length}}</span>
+                        </div>
+                        @if(org.description?.length == 0) {
+                            <span>Description: N/A</span>
+                        } @else {
+                        <span>Description: {{org.description}}</span>
+                    }
+      
+                    
+                </a>
+            }
+            
+            </div>
+        </div>
+        <div class="org-card">
+
+            <h2>Organizations you own</h2>
+            <div class="org-grid">
+                
+                @for(org of ownerOrganizations(); track $index){
+                    <a [routerLink]="['/organizations', org.id]" class="grid-item">
+                        <span class="org-name">{{org.name}}</span>
+                        <div class="org-personel">
+                            @for(member of org.memberships; track $index) {
+                                @if (member.role == "OWNER" ) {
+                                    <span>Owner: {{member.name}}</span>
+                                }
+                                
+                            }
+                            <span>Members: {{org.memberships.length}}</span>
+                        </div>
+                       
+                        @if(org.description?.length == 0) {
+                            <span>Description: N/A</span>
+                        } @else {
+                            <span>Description: {{org.description}}</span>
+                        }
+
+                        
+                    </a>
+                }
+                
+                
+            </div>
+        
+        </div>
+    </div>
+    
+</section>
