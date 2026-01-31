@@ -1,0 +1,44 @@
+<section>
+    <h1>{{task()?.title}}</h1>
+    <!-- @if(successMessage()) {
+        <small>{{successMessage()}}</small>
+    }
+    @if(errMessage()) {
+        <small>{{errMessage()}}</small>
+    } -->
+    <!-- <div class="actions">
+        @if(canJoinOrg()) {
+        <button (click)="join()" class="btn-secondary" type="button">
+            join
+        </button>
+        }
+        @if(!canJoinOrg() && user()?.id != owner()?.id) {
+        <button (click)="leave()" class="btn-secondary warn" type="button">
+            leave
+        </button>
+        }
+
+        @if(user()?.id == owner()?.id) {
+
+            <a [routerLink]="['/organizations/edit', taskSlug()]" class="grid-item text-center">
+                
+                edit
+            </a> -->
+        <!-- } -->
+    <!-- </div> -->
+    
+    <div class="info">
+        <h2>info:</h2>
+        <!-- <span>Owner: {{owner()?.name}}</span> -->
+        <span>Title: {{task()?.title}}</span>
+
+       @if(task()?.description?.length == 0) {
+            <span>Description: N/A</span>
+       } @else {
+         <span>Description: {{task()?.description}}</span>
+       }
+       <span>Members: </span>
+
+
+    </div>
+</section>
