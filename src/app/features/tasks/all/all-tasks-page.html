@@ -10,8 +10,9 @@
     @for(task of taskService.tasks(); track $index){
         <a [routerLink]="['/tasks', task.id]" class="grid-item">
                     <span class="org-name">{{task.title}}</span>
-                    <div class="org-personel">
-                    </div>
+                    
+                        <span>Created by: {{task.creator?.name}}</span>
+                        <span>{{task.status}}</span>
      
                 
         </a>

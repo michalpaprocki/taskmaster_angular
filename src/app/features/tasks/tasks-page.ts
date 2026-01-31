@@ -1,4 +1,4 @@
-import { NgIf } from "@angular/common";
+
 import { Component, inject, signal } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterLinkWithHref } from "@angular/router";
@@ -9,7 +9,7 @@ import { AuthService } from "../../core/services/auth.service";
 @Component({
     selector: 'tasks-page',
     styleUrl: './tasks-page.scss',
-    imports: [ReactiveFormsModule, RouterLinkWithHref, NgIf],
+    imports: [ReactiveFormsModule, RouterLinkWithHref],
     templateUrl: './tasks-page.html',
     standalone: true
 })

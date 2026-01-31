@@ -21,10 +21,8 @@ export class MyOrganizationsPage implements OnInit{
     constructor() {
         effect(() => {
              if(this.user()!=null){
-                console.log(this.orgService.getOrganizations())
                 this.userOrganizations.set(this.orgService.findUserOrganizations(this.user()?.name!))
                 this.ownerOrganizations.set(this.orgService.findOwnerOrganizations(this.user()?.name!))
-                console.log(this.orgService.findUserOrganizations(this.user()?.name!))
 
              }
         })

@@ -19,7 +19,6 @@ export class TaskService {
     this.loading.set(true)
     this.fetchTasks().subscribe({
         next: tasks => {
-            console.log(tasks)
             this.tasks.set(tasks),
             this.loaded.set(false)
         },
@@ -32,7 +31,6 @@ export class TaskService {
         })
     }
     createTask(task: Task) {
-        console.log(task)
         return this.http.post<Task>(this.BE_URL+"/api/task", task, {withCredentials: true})
 
     }

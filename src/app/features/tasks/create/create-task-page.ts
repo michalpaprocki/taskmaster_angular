@@ -15,7 +15,7 @@ import { TaskService } from "../../../core/services/task.service";
 @Component({
     selector: 'tasks-page',
     styleUrl: './create-task-page.scss',
-    imports: [ReactiveFormsModule, RouterLinkWithHref],
+    imports: [ReactiveFormsModule],
     templateUrl: './create-task-page.html',
     standalone: true
 })

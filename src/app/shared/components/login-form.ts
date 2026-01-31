@@ -3,7 +3,7 @@ import { Component, inject, signal } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLinkWithHref } from "@angular/router";
 import { AuthService } from "../../core/services/auth.service";
-import { switchMap, tap } from "rxjs";
+import { catchError, of, switchMap, tap } from "rxjs";
 
 
 interface ErrorResponse {
@@ -41,7 +41,9 @@ export class LoginForm {
 
         this.auth.login(email!, password!)
         .subscribe({
-        next: () => {this.successMessage.set("Log in successfull, redirecting to home page...")},
+        next: () => {
+            this.successMessage.set("Log in successfull, redirecting to home page...")
+        },
         error: (err) => {this.errMessage.set(err.error?.message ?? 'Login failed')},
         complete: () => {
             setTimeout(() => {
