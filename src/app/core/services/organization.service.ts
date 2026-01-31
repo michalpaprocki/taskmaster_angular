@@ -39,7 +39,7 @@ export class OrganizationService {
         return this.http.get<Organization[]>(this.BE_URL+"/api/organizations", { withCredentials: true })
     }
     createOrganization(organization: Organization) {
-        return this.http.post(this.BE_URL+"/api/organizations/create", organization, { withCredentials: true })
+        return this.http.post(this.BE_URL+"/api/organization", organization, { withCredentials: true })
     
     }
     getOrganizations() {
@@ -62,7 +62,7 @@ export class OrganizationService {
         }
     }
     findUserOrganizations(name:string) {
-        return this.organizations().filter(org => org.memberships.some(member=> member.name == name && member.role == "USER"))
+        return this.organizations().filter(org => org.memberships.some(member=> member.name == name && member.role == "MEMBER"))
     }
     findOwnerOrganizations(name:string) {
         return this.organizations().filter(org => org.memberships.some(member=> member.name == name && member.role == "OWNER"))
@@ -86,18 +86,18 @@ export class OrganizationService {
         }
     }
     joinOrganization(organization: Organization):Observable<Organization>{
-        return this.http.post<Organization>(this.BE_URL+"/api/organizations/"+organization.id+"/members", {}, {withCredentials: true})
+        return this.http.post<Organization>(this.BE_URL+"/api/organization/"+organization.id+"/members", {}, {withCredentials: true})
         
     }
     leaveOrganization(organization: Organization):Observable<Organization> {
-        return this.http.delete<Organization>(this.BE_URL+"/api/organizations/"+organization.id+"/members", {withCredentials: true})
+        return this.http.delete<Organization>(this.BE_URL+"/api/organization/"+organization.id+"/members", {withCredentials: true})
     }
     refreshOrganization(organization: Organization) {
-        return this.http.get<Organization>(this.BE_URL+"/api/organizations/"+organization.id, { withCredentials: true })
+        return this.http.get<Organization>(this.BE_URL+"/api/organization/"+organization.id, { withCredentials: true })
     }
 
     getOrganizationBySlug(organization:Organization):Observable<Organization> {
-        return this.http.get<Organization>(this.BE_URL+"/api/organizations/"+organization.id, {withCredentials:true})
+        return this.http.get<Organization>(this.BE_URL+"/api/organization/"+organization.id, {withCredentials:true})
     }
 
 }
