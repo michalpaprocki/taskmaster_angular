@@ -1,14 +1,18 @@
 <section class="hero">
   <h1>Organize your tasks with TaskMaster</h1>
   <p>Manage groups, track tasks, and stay productive!</p>
-  <div *ngIf="!auth.user() as user" class="hero-actions">
-    <a routerLink="/auth/register" class="btn-primary">Get Started</a>
-    <a routerLink="/auth/login" class="btn-secondary">Login</a>
-  </div>
-  <div *ngIf="auth.user() as user;">
-    <h2>Welcome, {{ user.name }}</h2>
+  @if(!auth.user()) {
+    <div class="hero-actions">
+      <a routerLink="/auth/register" class="btn-primary">Get Started</a>
+      <a routerLink="/auth/login" class="btn-secondary">Login</a>
+    </div>
 
-  </div>
+  }
+  @if(auth.user()){
+    <div>
+      <h2>Welcome, {{ auth.user()?.name }}</h2>
+    </div>
+  }
 </section>
 <section class="features">
   <div class="feature">
