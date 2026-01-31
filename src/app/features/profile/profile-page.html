@@ -1,0 +1,52 @@
+<section>
+    <h1>My Profile</h1>
+    <div class="edit">
+
+
+
+    <form class="changePassword" [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
+        <h2>Change Password</h2>
+        <div>
+            <label for="oldPassword">Current Password: </label>
+            <input id="oldPassword" type="password" name="password" formControlName="oldPassword" />
+        </div>
+        @if (changePasswordForm.controls.oldPassword.touched && changePasswordForm.controls.oldPassword.invalid) {
+            <small>
+                Please enter a valid password
+            </small>
+        }
+        <div>
+
+            <label for="newPassword">New Password: </label>
+            <input id="newPassword" type="password" name="password" formControlName="newPassword" />
+        </div>
+        @if (changePasswordForm.controls.newPassword.touched && changePasswordForm.controls.newPassword.invalid) {
+            <small>
+                Please enter a valid password
+            </small>
+        }
+        <div>
+
+            <label for="retypedPassword">Retype password: </label>
+            <input id="retypedPassword" type="password" name="password" formControlName="retypedPassword" />
+        </div>
+        @if (changePasswordForm.controls.retypedPassword.touched && changePasswordForm.controls.retypedPassword.invalid) {
+            <small>
+                Please enter a valid password
+            </small>
+        }
+        @if (changePasswordForm.controls.newPassword.value !== changePasswordForm.controls.retypedPassword.value) {
+            <small>
+                New password and retyped password do not match
+            </small>
+        }
+        @if(errMessage()){
+            <small>{{ errMessage() }}</small>
+        }
+        @if(successMessage()){
+            <small>{{ successMessage() }}</small>
+        }
+        <button class="btn-secondary" type="submit" [disabled]="!changePasswordForm.valid">submit</button>
+    </form>
+</div>
+</section>
