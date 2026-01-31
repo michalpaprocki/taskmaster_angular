@@ -15,6 +15,8 @@ export const createOrganization = (organization:Partial<Organization>):Organizat
     }
 export const createTask = (task: Partial<Task>):Task => {
     return {
+        creator: task.creator,
+        status: task.status ?? "PENDING",
         id: task.id ?? "",
         assignedOrgs: task.assignedOrgs ?? [],
         title: task.title ?? "",
