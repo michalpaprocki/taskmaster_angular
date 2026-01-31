@@ -1,0 +1,12 @@
+<section>
+    <h1>Users</h1>
+
+    <div class="users-container">
+        @for(user of users(); track $index) {
+            <div class="user-item">
+                <span>{{user.name}}</span>
+                <span>{{user.email}}</span>
+            </div>
+        }
+    </div>
+</section>
