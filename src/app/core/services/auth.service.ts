@@ -103,4 +103,8 @@ export class AuthService {
     if (!this.authChecked()) return "loading"
     return this._user() ? "authenticated" : "unauthenticated"
   })
+    changePassword(oldPassword: string, newPassword:string,) {
+      const passwordObject = {oldPassword: oldPassword, newPassword: newPassword}
+      return this.http.patch(this.BE_URI+"/api/users/me/password", passwordObject, {withCredentials: true, headers: { 'Content-Type': 'application/json' }})
+    }
 }
