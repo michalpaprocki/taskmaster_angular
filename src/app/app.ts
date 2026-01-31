@@ -16,16 +16,7 @@ export class App {
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      this.auth.hasValidSession().subscribe({
-        next: valid => {
-          if (valid) {
-            this.auth.fetchUser().subscribe();
-          }
-        },
-        error: () => {
-          this.auth.clearUser();
-        }
-      });
+      this.auth.loadUser().subscribe()
     }
   }
 }
