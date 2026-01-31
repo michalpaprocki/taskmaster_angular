@@ -1,79 +1,99 @@
 @use '../../../../../styles/variables';
 
 header.header {
+    min-width: 800px;
     height: variables.$header-h;
+    position: fixed;
+    box-shadow: 0rem 0.1rem 5px black;
+    width: 100%;
     display: flex;
     font-family: var(--font-secondary);
     justify-content: space-between;
     align-items: center;
-    padding: 0rem 2rem;
-    background-color: var(--secondary-color);
+    padding: 0rem 10rem;
+    background-color: var(--bg-color);
+}
+main {
+    padding: 0rem 10rem;
+    padding-top: variables.$header-h;
+    min-height: calc(100dvh - variables.$footer-h );
+}
+@media (max-width: 1000px) {
+    header.header {
+        padding: 0rem 1rem;
+    }
+    main {
+        padding-left:1rem;
+        padding-right: 1rem;
+    }
 }
 .logo {
     font-weight: bold;
     font-size: 1.5rem;
-    padding: 1rem;
     border-radius: 0%;
 }
-nav {
+nav.links {
     display: flex;
-    gap: 1rem;
     align-items: center;
 
     a, span, button {
-    color: var(--text-color);
+    color: var(--bg-color);
     text-decoration: none;
     cursor: pointer;
+    text-align: center;
     font-weight: 500;
     }
     a:hover {
-        color: var(--bg-color);
-        background-color: var(--primary-color);
+        background-color: var(--bg-color);
+        color: var(--primary-color);
+        border: 1px var(--primary-color) solid;
     }
 
 }
+
 div.drop-down {
     transition: height 150ms ease;
     position: absolute;
     min-width: 20ch;
-    overflow: hidden;
+    gap: 0.1rem;
+     overflow: hidden;
     background-color: var(--primary-color);
     > nav.drop-down-nav {
         display: flex;
-        gap: 0.1rem;
+
         flex-direction: column;
         align-items: start;
-      >  a.menu-link {
-            color: var(--bg-color);
-            font-weight: bold;
-            text-transform: capitalize;
-            width:100%;
-            border-radius: 0%;
-            padding: 1rem 1rem;
+        >  a.menu-link {
+                color: var(--bg-color);
+                font-weight: bold;
+                text-transform: capitalize;
+                width:100%;
+                border-radius: 0%;
+                padding: 1rem 1rem;
 
     }
-    > a.menu-link:hover {
-        color: var(--primary-color);
-        background-color: var(--bg-color);
+        > a.menu-link:hover {
+            color: var(--primary-color);
+            background-color: var(--bg-color);
     }
-      >  button.menu-link {
-            color: var(--bg-color);
-            font-weight: bold;
-            text-transform: capitalize;
-            background-color: var(--primary-color);
-            text-align: start;
-            font-size: 1rem;
-            width:100%;
-            border-radius: 0%;
-            padding: 1rem 1rem;
-            border: none;
+        >  button.menu-link {
+                color: var(--bg-color);
+                font-weight: bold;
+                text-transform: capitalize;
+                background-color: var(--primary-color);
+                text-align: start;
+                font-size: 1rem;
+                width:100%;
+                border-radius: 0%;
+                padding: 1rem 1rem;
+                border: 1px transparent solid;
 
     }
-    > button.menu-link:hover {
-        color: var(--primary-color);
-        background-color: var(--bg-color);
-
-    }
+        > button.menu-link:hover {
+            color: var(--primary-color);
+            background-color: var(--bg-color);
+            border: 1px var(--primary-color) solid;
+        }
     }
 }
 .non-interactive {
