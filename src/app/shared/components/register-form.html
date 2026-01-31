@@ -28,14 +28,13 @@
             Please enter a valid password
         </small>
     }
-    <!-- 
-    replace with @if when it's
-    @if (errMessage) {
-        <small>
-            {{errMessage}} 
-        </small>
-    } --> 
-        <small *ngIf="errMessage()">{{ errMessage() }}</small>
+
+    @if(errMessage()) {
+        <small>{{ errMessage() }}</small>
+    }
+    @if(successMessage()) {
+        <small>{{ successMessage() }}</small>
+    }
     <button type="submit" [disabled]="!registerForm.valid">submit</button>
 </form>
 <div class="redirect">
