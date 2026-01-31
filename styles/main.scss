@@ -10,41 +10,6 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-main {
-    padding: 0rem 10rem;
-    margin: 0 auto;
-    min-height: calc(100dvh - calc(variables.$footer-h + variables.$header-h));
-}
-li {
-    list-style-type: none;
-}
-a {
-    cursor: pointer;
-    color: var(--primary-color);
-    border-radius: 10px;
-    padding: 1rem 1rem;
-    font-family: fonts.$font-secondary;
-    text-decoration: none;
-}
-a:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
-    transition: 150ms;
-}
-h1, h2, h3, h4 {
-    margin:1rem 0rem;
-    padding: 1rem;
-}
-p {
-    padding: 1rem;
-}
-    h1.form-heading {
-    text-align: center;
-    padding: 4rem;
-    font-size: 2rem;
-    margin: 0;
-}
 @media (max-width: 800px) {
     form > div {
         display: flex;
@@ -57,6 +22,61 @@ p {
     main {
         padding: 0rem 1rem;
     }
+    .orgs-container {
+    flex-direction: column;
+
+    }
+
+
+}
+
+main {
+    padding: 0rem 10rem;
+    margin: 0 auto;
+    min-height: calc(100dvh - calc(variables.$footer-h + variables.$header-h));
+}
+section {
+    padding: 5rem 0rem;
+}
+li {
+    list-style-type: none;
+}
+a {
+    cursor: pointer;
+    color: var(--bg-color);
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    padding: 0.5rem;
+    min-width: 10ch;
+    font-family: fonts.$font-secondary;
+    text-decoration: none;
+    border: 0.1px solid transparent;
+}
+
+a:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    transition: 150ms;
+    border: 0.1px solid var(--primary-color);
+}
+h1, h2, h3, h4 {
+    margin:1rem 0rem;
+    padding: 1rem;
+    text-transform: capitalize;
+}
+p {
+    padding: 1rem;
+}
+    h1.form-heading {
+    text-align: center;
+    padding: 4rem;
+    font-size: 2rem;
+    margin: 0;
+}
+nav.links {
+
+    display: flex;
+    gap:1rem;
 
 }
 form {
@@ -103,19 +123,101 @@ div.redirect {
 }
 
 button.btn-primary {
-  background-color: var(--primary-color);
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: var(--bg-color);
-  border-radius: 15px;
-  border: 0.1px solid transparent;
-  transition: 150ms;
+    background-color: var(--primary-color);
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg-color);
+    border-radius: 15px;
+    border: 0.1px solid transparent;
+    transition: 150ms;
+    cursor: pointer;
 }
 button.btn-primary:hover {
-  background-color: var(--bg-color);
-  color: var(--primary-color);
-  border: 0.1px solid var(--primary-color);
-
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border: 0.1px solid var(--primary-color);
+}
+button.btn-primary[disabled] {
+    background-color: var(--disabled-color);
+}
+button.btn-primary[disabled]:hover {
+    color: var(--bg-color);
+    cursor: default;
+}
+button.btn-secondary {
+    min-width: 10ch;
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg-color);
+    border-radius: 15px;
+    border: 0.1px solid transparent;
+    transition: 150ms;
+    cursor: pointer;
+}
+button.btn-secondary:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    border: 0.1px solid var(--primary-color);
+}
+button.warn {
+    background-color: var(--warn-color);
+}
+button.warn:hover {
+    background-color: var(--bg-color);
+    color: var(--warn-color);
+    border-color: var(--warn-color);
 }
 
+div.org-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+
+a.grid-item {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+    
+    > span {
+        font-weight: bold;
+    }
+}
+a.grid-item:hover, a.grid-item:focus {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+}
+.orgs-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.org-card {
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.org-personel {
+    display:flex;
+    justify-content: space-between;
+}
+span.org-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+.text-center {
+    text-align: center;
+}

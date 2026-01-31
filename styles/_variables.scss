@@ -16,7 +16,9 @@ $bg-grad:  linear-gradient(
   --text-color: #111111;
   --text-focus-color: #ffffff;
   --primary-color: #4f46e5;
+  --disabled-color: #726eb4;
   --secondary-color: #f0f0f0;
+  --warn-color: hsla(0, 65%, 59%, 0.877);
 
   &.dark {
     --bg-color: #111111;
