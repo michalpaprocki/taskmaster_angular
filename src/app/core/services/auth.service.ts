@@ -3,7 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, filter, finalize, map, Observable, of, take, tap, throwError } from 'rxjs';
 import { User } from '../../models/user.model';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../envs/environment';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -74,7 +74,7 @@ export class AuthService {
     return this.http.post(this.BE_URI+"/auth/login", { email, password }, { withCredentials: true })
   }
   rawHttpFetchUser() {
-     return this.http.get<User>(this.BE_URI+"/api/users/me", {withCredentials: true})
+     return this.http.get<User>(this.BE_URI+"/users/me", {withCredentials: true})
   }
   fetchUser() {
     return this.rawHttpFetchUser().pipe(
@@ -105,6 +105,6 @@ export class AuthService {
   })
     changePassword(oldPassword: string, newPassword:string,) {
       const passwordObject = {oldPassword: oldPassword, newPassword: newPassword}
-      return this.http.patch(this.BE_URI+"/api/users/me/password", passwordObject, {withCredentials: true, headers: { 'Content-Type': 'application/json' }})
+      return this.http.patch(this.BE_URI+"/users/me/password", passwordObject, {withCredentials: true, headers: { 'Content-Type': 'application/json' }})
     }
 }

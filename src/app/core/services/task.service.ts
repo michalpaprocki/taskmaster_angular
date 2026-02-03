@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core"
-import { environment } from "../../../environments/environment";
+import { environment } from "../../../../envs/environment";
 import { Task } from "../../models/task.model";
 import { HttpClient } from "@angular/common/http";
 
@@ -31,14 +31,14 @@ export class TaskService {
         })
     }
     createTask(task: Task) {
-        return this.http.post<Task>(this.BE_URL+"/api/task", task, {withCredentials: true})
+        return this.http.post<Task>(this.BE_URL+"/task", task, {withCredentials: true})
 
     }
     fetchTasks(){
-        return this.http.get<Task[]>(this.BE_URL+"/api/tasks", {withCredentials: true})
+        return this.http.get<Task[]>(this.BE_URL+"/tasks", {withCredentials: true})
     }
     fetchTask(task: Task) {
-        return this.http.get<Task>(this.BE_URL+"/api/task/"+task.id, {withCredentials: true})
+        return this.http.get<Task>(this.BE_URL+"/task/"+task.id, {withCredentials: true})
     }
     getAllTasks() {
         if (this.loaded() && !this.loading()){
@@ -48,6 +48,6 @@ export class TaskService {
         return this.tasks();
     }
     deleteTask(task: Task) {
-        return this.http.delete<Task>(this.BE_URL+"/api/task/"+task.id, {withCredentials: true})
+        return this.http.delete<Task>(this.BE_URL+"/task/"+task.id, {withCredentials: true})
     }
 }
