@@ -1,3 +1,6 @@
+export const prerender = false;
+export const renderMode = 'client'
+
 import { Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Organization } from "../../../models/organization.model";
@@ -13,10 +16,10 @@ import { Organization } from "../../../models/organization.model";
 
 export class EditOrganizationPage implements OnInit {
     private route = inject(ActivatedRoute)
-    organizaiton!: Organization;
+    organization!: Organization;
     ngOnInit(): void {
         this.route.data.subscribe(data => {
-            this.organizaiton = data['org']
+            this.organization = data['org']
         })
     }
 }
