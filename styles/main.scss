@@ -60,7 +60,16 @@ a:hover {
     transition: 150ms;
     border: 0.1px solid var(--primary-color);
 }
-
+a.secondary {
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+    border: solid 1px var(--primary-color);
+}
+a.secondary:hover {
+    color: var(--bg-color);
+    background-color: var(--primary-color);
+    border: solid 1px var(--bg-color);
+}
 h1, h2, h3, h4 {
     margin:1rem 0rem;
     padding: 1rem;
