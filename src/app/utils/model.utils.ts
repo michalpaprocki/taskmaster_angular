@@ -18,7 +18,7 @@ export const createTask = (task: Partial<Task>):Task => {
         creator: task.creator,
         status: task.status ?? "PENDING",
         id: task.id ?? "",
-        assignedOrgs: task.assignedOrgs ?? [],
+        assignedOrganizations: task.assignedOrganizations ?? [],
         title: task.title ?? "",
         deadline: task.deadline ?? new Date(),
         description: task.description ?? "",

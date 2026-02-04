@@ -1,3 +1,4 @@
+import { Organization } from "./organization.model";
 import { User } from "./user.model";
 
 
@@ -8,7 +9,7 @@ export interface Task {
     creator: {name: string}|undefined
     deadline: Date
     status: string
-    assignedOrgs?: string[]|unknown[]
+    assignedOrganizations?: string[]|Organization[]
     createdAt?: Date
     updatedAt?: Date
 
