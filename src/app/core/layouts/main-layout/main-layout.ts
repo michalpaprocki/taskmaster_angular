@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 
 
@@ -13,13 +13,16 @@ import { FooterComponent } from '../footer/footer-component';
   templateUrl: 'main-layout.html',
   styleUrl: 'main-layout.scss',
 })
+
+// maybe add spinners when user state not loaded yet
+
 export class MainLayout {
 
   @ViewChild('menu') menu!: ElementRef<HTMLDivElement>;
   isOpen = signal(false)
   height = signal(0)
 
-  constructor(public auth: AuthService) {}
+  auth = inject(AuthService)
 
   toggleMenu() {
 

@@ -20,6 +20,8 @@ import { TaskService } from "../../../core/services/task.service";
     standalone: true
 })
 
+// in future, fetch only those orgs user owns or is some kind of director 
+
 export class CreateTaskPage {
 constructor(){}
 
@@ -37,20 +39,22 @@ constructor(){}
     isOpen =signal(false)
     organizations = signal<Organization[]>([])
 
+
+    // todo better validation messages
     createTaskForm = this.formBuilder.group({
         title: ['', [Validators.required, Validators.minLength(5)]],
         description: ['', [Validators.required, Validators.minLength(10)]],
         deadline: [this.getTomorow(), Validators.required],
-        assignees: this.formBuilder.array([])
+        assignedOrganizations: this.formBuilder.array([])
     })
 
     onSubmit() {
         this.errMessage.set('');
         this.successMessage.set('');
 
-        const {title, description, deadline, assignees} = this.createTaskForm.value
+        const {title, description, deadline, assignedOrganizations} = this.createTaskForm.value
         // @ts-ignore
-        const task = createTask({title: title!, description: description!, deadline: new Date(deadline!), assignedOrgs: assignees?.length > 0 ? assignees!.map(a => a.id):[]})
+        const task = createTask({title: title!, description: description!, deadline: new Date(deadline!), assignedOrganizations: assignedOrganizations?.length > 0 ? assignedOrganizations!.map(a => a.id):[]})
        this.taskService.createTask(task).subscribe({
         next: (task) => {
             this.successMessage.set("Task "+task.title+" create successfully")
@@ -69,6 +73,9 @@ constructor(){}
     }
 
     showOrgs() {
+        if(this.isOpen() == true){
+            this.resetFormOrgs()
+        }
         this.organizations.set(this.orgService.getOrganizations())
         this.isOpen.set(!this.isOpen())
         if(this.organizations().length == 0) {
@@ -93,9 +100,14 @@ constructor(){}
     
     }
     get orgsFormArray() {
-        return this.createTaskForm.get('assignees') as FormArray;
+        return this.createTaskForm.get('assignedOrganizations') as FormArray;
     }
     get getFormOrgs() {
         return this.orgsFormArray.value
     }
+    resetFormOrgs() {
+        // maybe filter orgs by form array value
+        this.orgsFormArray.clear()
+    }
+   
 }

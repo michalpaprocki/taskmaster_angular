@@ -8,7 +8,7 @@
             </div>
                 @if (createTaskForm.controls.title.touched && createTaskForm.controls.title.invalid) {
                     <small>
-                        Please enter a valid title
+                        Please enter a valid title with at least 5 characters
                     </small>
                 }
             <div>
@@ -17,7 +17,7 @@
             </div>
                 @if (createTaskForm.controls.description.touched && createTaskForm.controls.description.invalid) {
                     <small>
-                        Please enter a valid description
+                        Please enter a valid description with at least 10 characters
                     </small>
                 }
             <div>
@@ -30,7 +30,7 @@
                     </small>
                 }
                 <div class="click-list-wrapper">
-                <button class="btn-primary" (click)="showOrgs()" type="button">assign task</button>
+                <button class="btn-primary" (click)="showOrgs()" type="button">assign</button>
                 @if (isOpen()) {
 
                     <div class="click-list-container">
@@ -47,7 +47,7 @@
                         </div>
                         <div class="flex-col">
 
-                            <span>Selected users:</span>
+                            <span>Selected orgs:</span>
                             <ul class="click-list">
 
                             @for(org of getFormOrgs; track $index){
@@ -65,6 +65,9 @@
             
                 @if(errMessage()) {
                     <small>{{ errMessage() }}</small>
+                }
+                @if(successMessage()) {
+                    <small>{{ successMessage() }}</small>
                 }
             <button type="submit" class="btn-secondary" [disabled]="!createTaskForm.valid">add</button>
         </form>
