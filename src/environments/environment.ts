@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
-    BE_URL: 'http://localhost:8080'
+    production: true,
+    BE_URL: 'https://api.taskmaster.michalpaprocki.com'
 }
