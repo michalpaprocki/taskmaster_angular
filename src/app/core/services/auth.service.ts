@@ -3,7 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, filter, finalize, map, Observable, of, take, tap, throwError } from 'rxjs';
 import { User } from '../../models/user.model';
-import { environment } from '../../../../envs/environment';
+import { environment } from '../../../environments/environment';
 import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class AuthService {
 
   private _user = signal<User | null>(null)
   public readonly user = computed(() => this._user())
-  public readonly isAuthenticated = computed(() => !!this._user())
+  public readonly isAuthenticated = computed(() => !!this._user()) //coerce to boolean
   authChecked = signal(false)
   loading = signal(false)
 
@@ -68,10 +68,18 @@ export class AuthService {
     )
   }
   register(name: string, email: string, password: string) {
-    return this.http.post(this.BE_URI + '/auth/register', { name, email, password }, { withCredentials: true })
+    return this.http.post<User>(this.BE_URI + '/auth/register', { name, email, password }, { withCredentials: true }).pipe(
+      tap((value) => {
+        this._user.set(value)
+      } )
+    )
   }
   login(email: string, password: string) {
-    return this.http.post(this.BE_URI+"/auth/login", { email, password }, { withCredentials: true })
+    return this.http.post<User>(this.BE_URI+"/auth/login", { email, password }, { withCredentials: true }).pipe(
+      tap((value) => {
+        this._user.set(value)
+      } )
+    )
   }
   rawHttpFetchUser() {
      return this.http.get<User>(this.BE_URI+"/users/me", {withCredentials: true})

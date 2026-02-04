@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core";
-import { environment } from "../../../../envs/environment";
+import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 
 import { Organization } from "../../models/organization.model";

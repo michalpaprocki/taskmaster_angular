@@ -1,5 +1,5 @@
 import { Injectable, signal } from "@angular/core"
-import { environment } from "../../../../envs/environment";
+import { environment } from "../../../environments/environment";
 import { Task } from "../../models/task.model";
 import { HttpClient } from "@angular/common/http";
 
@@ -8,11 +8,12 @@ import { HttpClient } from "@angular/common/http";
 })
 export class TaskService {
     BE_URL = environment.BE_URL
+    
     loaded = signal(false)
     loading = signal(false)
     tasks = signal<Task[]>([])
     constructor(private http:HttpClient){}
-
+    
     loadTasks() {
     if(this.loaded() || this.loading()) return
 
