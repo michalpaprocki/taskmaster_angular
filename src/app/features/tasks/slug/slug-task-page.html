@@ -4,12 +4,41 @@
     
     <div class="info">
         <h2>info:</h2>
-        <span>Description:
-        @if(task()?.description?.length == 0) {
-         N/A
-        } @else {
-            {{task()?.description}}
-        }
-        </span>
-    </div>
+            <div class="task-info">
+
+                <span>Description:
+                    @if(task()?.description?.length == 0) {
+                        N/A
+                    } @else {
+                        {{task()?.description}}
+                    }
+                </span>
+                <span>
+                    Organizations assigned: {{task()?.assignedOrganizations?.length}}
+                </span>
+            </div>
+            <button (click)="toggleDetails()" class="btn-secondary">
+                @if (showDetails()){
+                    hide organizations details
+                } @else {
+                    show organizations details
+                }
+            </button>
+            <div class="org-grid">
+
+                @if (showDetails()) {
+                    @for (org of assignedOrganizations; track $index) {
+                        <div class="org">
+                            <span>name: {{org.name}}</span>
+                            <span>description: {{org.description}}</span>
+                            <span>members: {{org.memberships.length}}</span>
+                            <span>created: {{org.createdAt?.toString()?.slice(0, 10)}}</span>
+                            <a  [routerLink]="['/organizations/', org.id]" class="secondary" >
+                                visit
+                            </a >
+                        </div>  
+                    }
+                }
+            </div>
+        </div>  
 </section>

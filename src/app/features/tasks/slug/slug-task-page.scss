@@ -1,7 +1,49 @@
 .info {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     > span {
-        display: block;
+        display: inline-block;
+        padding: 0.25rem;
+    }
+    > button {
+        width: fit-content;
+        padding: 1rem 5rem;
+        align-self: center;
+        text-transform: capitalize;
+        font-weight: bold;
+    }
+    > .task-info {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+}
+.org-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.org {
+    display: flex;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-radius: 10px; 
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    > span {
+        padding: 0.1rem;
+        font-weight: bolder;
+        
+    }
+    > a {
+        width: fit-content;
+        align-self: center;
+        font-weight: bold;
+        text-transform: capitalize;
+        text-align: center;
+        font-size: 1.2rem;
     }
 }
